@@ -1,0 +1,36 @@
+{
+    // package name
+    "name": "bitzania/yii2-simple-statistics",
+
+    // package type
+    "type": "yii2-extension",
+
+    "description": "Simple statistics module for Yii2 Framework",
+    "keywords": ["yii2", "statistic", "bitzania", "module"],
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "",
+        "forum": "http://www.yiiframework.com/forum/",
+        "wiki": "http://www.yiiframework.com/wiki/",
+        "irc": "",
+        "source": ""
+    },
+    "authors": [
+        {
+            "name": "Ficky Irwanto",
+            "email": "ficky.irwanto@gmail.com"
+        }
+    ],
+
+    // package dependencies
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+
+    // class autoloading specs
+    "autoload": {
+        "psr-4": {
+            "bitzania\\statistic\\": "src"
+        }
+    }
+}
