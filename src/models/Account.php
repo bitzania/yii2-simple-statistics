@@ -5,6 +5,9 @@ namespace bitzania\statistic\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
+use paulzi\jsonBehavior\JsonBehavior;
+use paulzi\jsonBehavior\JsonValidator;
+
 
 /**
  * This is the model class for table "bz_stat_account".
@@ -46,6 +49,10 @@ class Account extends \yii\db\ActiveRecord
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => 'modified_by',
             ],
+            'json'=>[
+                'class' => JsonBehavior::className(),
+                'attributes' => ['data'],
+            ],
         ];
     }
 
@@ -55,13 +62,14 @@ class Account extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['notes', 'tags', 'data'], 'string'],
+            [['notes', 'tags'], 'string'],
             [['balance'], 'number'],
             [['created_on', 'modified_on'], 'safe'],
             [['created_by', 'modified_by'], 'integer'],
             [['code', 'name'], 'string', 'max' => 255],
             [['unit'], 'string', 'max' => 50],
             [['code'], 'unique'],
+            [['data'], JsonValidator::className()],
         ];
     }
 
