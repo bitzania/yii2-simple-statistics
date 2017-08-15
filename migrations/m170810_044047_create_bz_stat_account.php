@@ -12,17 +12,23 @@ class m170810_044047_create_bz_stat_account extends Migration
      */
     public function up()
     {
-        $this->createTable('bz_stat_account', [
+        $tbname = 'bz_stat_account';
+        $this->createTable($tbname, [
             'id' => $this->primaryKey(),
+            'code' => $this->string(255),
             'name' => $this->string(255),
-            'code' => $this->string(50),
+            'notes' => $this->text(),
             'tags' => $this->text(),
             'data' => $this->text(),  // json custom data if necesssary
+            'unit' => $this->string(50), // satuan
+            'balance' => $this->decimal(20,2),
             'created_on' => $this->datetime(),
             'modified_on' => $this->datetime(),
             'created_by' => $this->integer(),
             'modified_by' => $this->integer(),
         ]);
+
+        $this->createIndex($tbname.'code', $tbname, "code", true);
     }
 
     /**
