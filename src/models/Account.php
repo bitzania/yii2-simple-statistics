@@ -35,6 +35,38 @@ class Account extends \yii\db\ActiveRecord
         return 'bz_stat_account';
     }
 
+    public function init() {
+        parent::init();
+    }
+
+    public static function generateCode($obj, $attribute, $pk=null) {
+        if (!$pk) 
+            if (isset($obj->primaryKey))
+                $pk = $obj->primaryKey;
+        $code = get_class($obj).'-'.$pk.'->'.$attribute;
+        return $code;
+    }
+
+    public static function initAccount($obj, $attribute, $pk=null) {
+        $code = self::generateCode($obj, $attribute, $pk);
+        $model = self::findOne(['code'=>$code]);
+        if ($model) {
+            return $model;
+        }
+        else {
+            return self::createAccount($code, $attribute);
+        }
+    }
+
+    public static function createAccount($code, $name='', $balance=0) {
+        $model = new Account();
+        $model->code = $code;
+        $model->name = $name;
+        $model->balance = $balance;
+        $model->save();
+        return $model;
+    }
+
     public function behaviors() {
         return [
             'timestamp'=>[
