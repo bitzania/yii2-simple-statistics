@@ -26,9 +26,9 @@ public function behaviors()
 
 This behavior automatically add a new Account record, with code as described in 
 
-...
+```
 Account::generateCode
-...
+```
 
 
 
