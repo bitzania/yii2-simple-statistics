@@ -9,7 +9,16 @@ Simple Statistics Module for Yii2 Framework
 --migrationPath="vendor\bitzania\yii2-simple-statistics\migrations"
 ```
 
-
+# Config Modules
+```
+'modules' => [
+    ...
+    'statistic' => [
+        'class' => 'bitzania\statistic\Module',
+    ]
+    ...
+],
+```
 
 # Behaviors
 ```
@@ -35,8 +44,12 @@ Account::generateCode
 # Usage
 ```
 $p = Product::findOne(5);
+
 echo $p->stat;  // for new record the value always 0
+
 \bitzania\statistic\models\Ledger::addTransaction($p->accountCode, date("Y-m-d H:i:s"), 'xxx', 10, true);
+
 $p = Product::findOne(5);  // need to refresh the value from database
+
 echo $p->stat;  // 10 because above transaction
 ```
