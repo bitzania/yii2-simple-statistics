@@ -2,11 +2,14 @@
 
 Simple Statistics Module for Yii2 Framework
 
-
+# Installation
+```
+composer install bitzania/yii2-simple-statistics
+```
 
 # Migrations
 ```
---migrationPath="vendor\bitzania\yii2-simple-statistics\migrations"
+yii migrate --migrationPath="vendor\bitzania\yii2-simple-statistics\migrations"
 ```
 
 # Config Modules
