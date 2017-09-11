@@ -148,7 +148,7 @@ class Ledger extends \yii\db\ActiveRecord
         }
     }
 
-    public static function addTransaction($account_code, $tgl, $trx_ref, $trx_value, $create_account = true) {
+    public static function addTransaction($account_code, $tgl, $trx_ref, $trx_value, $create_account = true, $data = null) {
         $a = Account::findOne(['code'=>$account_code]);
         if (!$a && $create_account) {
             $a = Account::createAccount($account_code);
@@ -159,6 +159,8 @@ class Ledger extends \yii\db\ActiveRecord
         $model->trx_date =  $tgl;
         $model->trx_ref = $trx_ref;
         $model->trx_value = $trx_value;
+        if ($data) 
+            $model->data->set($data);
         $model->save();
         return $model;
     }
